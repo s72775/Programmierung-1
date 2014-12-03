@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <time.h>
+
+//---------Struct-------------
+
+typedef struct {
+	int kontonummer;
+	int pin;
+	double guthaben;
+} kunde;
+
+//-----------------------------------------------------------------------------
+int test()
+{
+	kunde kunde1;
+	kunde1.kontonummer = 0;
+	kunde1.pin = 0;
+	kunde1.guthaben = 0;
+}
+//-----------------------------------------------------------------------------
+int einloggen()
+{
+	printf("Geben Sie Ihre Kontonummer ein:\n");
+	int Kontonummer;
+	scanf_s("%d", &Kontonummer);
+	int Pin;
+	printf("Geben Sie Ihre Pin ein:\n");
+	scanf_s("%d", &Pin);
+}
+//----------Generatoren-------------
+int kontonummergenerator()
+{
+	int max = 9999; int min = 1111; int nummer;
+	for (int kto = 0; kto < 5; kto++)
+	{
+		nummer = rand()%(max-min+1)+min;
+		return nummer;
+	}		
+}
+int pingenerator()
+{
+	int max = 9999; int min = 1111; int pin;
+	for (int p = 0; p < 5; p++)
+	{
+		pin = rand()%(min+max+1)+min;
+		return pin;
+	}
+}
+//-----------------------------------
+
+
+//-------MAIN------------
+int main()
+{
+	while (1)
+	{
+		int eingabe;
+		printf("Hallo,\n Was wollen Sie machen?\n\t1)Kunden anlegen\n\t2)Einloggen\n\t3)Beenden\n\n");
+		scanf_s("%d", &eingabe);
+		
+		//------Auswahl---------------
+	switch (eingabe)
+		{
+		//--------Neuer User---------
+		case 1:
+			printf("Ihre neue Kontonummer ist %d.\n",kontonummergenerator());
+			printf("Ihre pin ist %d\n",pingenerator());		
+			
+			int submain;
+			printf("Was wollen Sie nun machen?\n\t1)Einloggen\n\t2)Hauptmenue\n");
+				scanf_s("%d", &submain);
+
+				switch (submain)
+				{
+				
+				//------Einloggen----------vllt das in eine extra funktion!!		z.B.	*(Zeiger)einloggen C von A-Z Seite 285
+				case 1: 
+					einloggen(); break;
+
+				//------Hauptmenue----------
+				case 2: break;
+				}
+			break;
+
+
+
+
+		//----------Einloggen-----------
+		case 2: 
+			einloggen(); break;
+
+		//--------beenden-----------
+		case 3: return 0;
+
+		default: printf("Ihre Eingabe war falsch. Bitte neue Eingabe!\n");
+		}
+				
+	}
+	
+}
